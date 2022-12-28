@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv'
 import workoutRoutes from './routes/workouts.js'
+import userRoutes from './routes/user.js'
 import mongoose from 'mongoose';
 import cors from 'cors'
 dotenv.config()
@@ -14,6 +15,8 @@ app.use((req, res, next) => {
     next()
 })
 app.use('/api/workouts',workoutRoutes)
+app.use('/api/user',userRoutes)
+
 
 mongoose.set('strictQuery', true)
 // connect to db
@@ -24,5 +27,5 @@ mongoose.connect(process.env.MONG_URI)
             console.log('Connected to db & listening on port 4000!')
         })        
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err)) 
 

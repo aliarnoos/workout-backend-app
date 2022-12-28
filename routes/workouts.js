@@ -1,17 +1,21 @@
 import express  from "express";
 import {
     createWorkout,
-    gettWorkouts,
-    gettWorkout,
+    getWorkouts,
+    getWorkout,
     deleteWorkout,
     updateWorkout
 } from '../controllers/workoutControllers.js'
+import { requireAuth } from "../middleware/requireAuth.js";
 const router = express.Router()
 
+// require auth for all workouts routes
+router.use(requireAuth)
+
 // get all workouts
-router.get('/', gettWorkouts)
+router.get('/', getWorkouts)
 // get single workout
-router.get('/:id', gettWorkout)
+router.get('/:id', getWorkout)
 //post new workout
 router.post('/', createWorkout)
 
